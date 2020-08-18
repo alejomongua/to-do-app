@@ -4,7 +4,7 @@ import Todo from './Todo'
 
 const TodoList = ({ todos, onTodoClick }) => {
   return (
-    <ul>
+    <ul className='bg-blue-100 m-6'>
       {todos.map((todo) => (
         <Todo
           {...todo}
