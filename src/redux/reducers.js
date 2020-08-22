@@ -1,30 +1,33 @@
 import { combineReducers } from 'redux'
 import {
-  ADD_TODO,
+  ADD_TODO_SUCCESS,
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
-  VisibilityFilters
+  VisibilityFilters,
+  ADD_ALERT,
+  REMOVE_ALERT,
 } from './actions'
 
 function todos(state = {list: [], byId: {}}, action) {
   let byId
   switch (action.type) {
-    case ADD_TODO:
+    case ADD_TODO_SUCCESS:
+      console.log(action)
       byId = {...state.byId}
-      byId[action.id] = {
-        text: action.text,
+      byId[action.payload.key] = {
+        text: action.payload.text,
         completed: false
       }
       return {
         list: [
           ...state.list,
-          action.id
+          action.payload.key
         ],
         byId
       }
     case TOGGLE_TODO:
       byId = {...state.byId}
-      byId[action.id].completed = !byId[action.id].completed
+      byId[action.key].completed = !byId[action.key].completed
       return Object.assign({}, state, { byId })
     default:
       return state
@@ -40,9 +43,25 @@ function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
   }
 }
 
+function alertas(state = [], action) {
+  switch (action.type) {
+    case ADD_ALERT:
+      return [
+        ...state,
+        { ...action.payload }
+      ] 
+    case REMOVE_ALERT:
+      return state.filter((alerta) => alerta.text == action.payload)
+    default:
+      return state
+  }
+
+}
+
 const todoApp = combineReducers({
   visibilityFilter,
-  todos
+  todos,
+  alertas,
 })
 
 /* Lo anterior es equivalente a: 

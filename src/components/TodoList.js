@@ -16,7 +16,7 @@ const TodoList = ({ todos, onTodoClick }) => {
 /* Dentro de los atributos del componente anterior
     {...todo}
   es equivalente a:
-    key={todo.id}
+    key={todo.key}
     text={todo.text}
     completed={todo.completed}
 */
