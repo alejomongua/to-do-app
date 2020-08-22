@@ -16,12 +16,13 @@ Quiero que esta aplicación me sirva como base para aprender lo siguiente:
 * [X] Redux y react-redux -> Esqueleto base de la aplicación
 * [X] tailwindcss -> Estilos de la aplicaición
 * [X] FontAwesome -> Símbolos
-* [ ] firebase -> Autenticación y persistencia
-* [ ] redux-saga -> Peticiones asíncronas
+* [X] firebase -> Persistencia (falta autenticacion)
+* [X] redux-saga -> Peticiones asíncronas
 * [ ] jest -> Testing automático
 * [ ] i18n -> Traducciones
 * [ ] circleci -> Continuous Integration
 * [ ] vercel -> Deployment
+* [ ] typescript -> Refactoring
 
 ## Redux y react-redux
 
@@ -61,6 +62,62 @@ https://redux-saga.js.org/
 
 Modifico la acción addTodo para guardar el dato en firebase
 
+### Llamada de funciones en redux saga:
+
+Para llamar funciones asíncronas en redux-saga se usa call así:
+
+    import { call } from 'redux-saga/effects'
+
+    // (...)
+
+    fucntion * generadorAsincrono (parametros) {
+        yield funcionAsincrona(parametros)
+    }
+    // (...)
+
+    yield call(generadorAsincrono, parametros)
+
+La función asíncrona retorna una promesa
+
+Si se necesita el valor de retorno de la función asíncrona como si se estuviera usando await:
+
+```
+import { call } from 'redux-saga/effects'
+
+// (...)
+
+fucntion * generadorAsincrono (parametros) {
+    return yield funcionAsincrona(parametros)
+}
+// (...)
+
+const respuesta = yield call(generadorAsincrono, parametros)
+```
+
 ## Firebase
 
-Creo una base de datos en Firebase para guardar los datos de la aplicación, la interfaz se ve bastante sencilla
+Creo una base de datos en Firebase para guardar los datos de la aplicación mediante la interfaz web.
+En la misma interfaz web busco el objeto de configuración
+El uso de la base de datos es bastante sencillo:
+
+```
+import * as firebase from 'firebase/app'
+import 'firebase/analytics'
+import 'firebase/firestore'
+import firebaseConfig from '../../config/firebaseConfig' // Objeto de configuracion
+
+// (...)
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+let db = firebase.firestore();
+
+ async function addTodoFirestore (tarea) {
+  const response = await db.collection('tareas').add(tarea)
+  console.log('El objeto creado tiene el ID: ' + response.id)
+}
+```
+
+Ahora cambiaré el ID de mis tareas para que sea el que genera firebase

@@ -13,7 +13,12 @@ const AddTodo = ({dispatch}) => {
       return
     }
 
-    dispatch(addTodo(input.value))
+    const newTask = {
+      text: input.value,
+      completed: false,
+    }
+
+    dispatch(addTodo(newTask))
     input.value = ''
   }
 

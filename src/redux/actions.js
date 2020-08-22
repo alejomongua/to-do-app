@@ -1,17 +1,13 @@
-import { v4 as uuidv4 } from 'uuid'
-
 export const ADD_TODO = 'add_todo'
-
+export const ADD_TODO_SUCCESS = 'add_todo_success'
 export const REMOVE_TODO = 'delete_todo'
-
+export const REMOVE_TODO_SUCCESS = 'delete_todo_success'
 export const TOGGLE_TODO = 'toggle_todo'
+export const TOGGLE_TODO_SUCCESS = 'toggle_todo_success'
 
 export const SET_VISIBILITY_FILTER = 'set_visibility_filter'
 
-export const ADD_TODO_SUCCESS = 'add_todo_success'
-
 export const ADD_ALERT = 'add_alert'
-
 export const REMOVE_ALERT = 'delete_alert'
 
 export const VisibilityFilters = {
@@ -24,14 +20,10 @@ export const VisibilityFilters = {
  * action creators
  */
 
-export function addTodo(text) {
+export function addTodo(payload) {
   return {
     type: ADD_TODO,
-    payload: {
-      key: uuidv4(),
-      text,
-      completed: false,
-    }
+    payload
   }
 }
 
@@ -42,8 +34,18 @@ export function addTodoSuccess(payload) {
   }
 }
 
-export function toggleTodo(id) {
-  return { type: TOGGLE_TODO, id }
+export function toggleTodo(payload) {
+  return {
+    type: TOGGLE_TODO,
+    payload
+  }
+}
+
+export function toggleTodoSuccess(payload) {
+  return {
+    type: TOGGLE_TODO_SUCCESS,
+    payload
+  }
 }
 
 export function setVisibilityFilter(filter) {

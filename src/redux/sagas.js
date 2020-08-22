@@ -9,16 +9,17 @@ import firebaseConfig from '../../config/firebaseConfig'
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-var db = firebase.firestore();
+const db = firebase.firestore();
 
-function addTodoFirestore (tarea) {
-  db.collection('tareas').add(tarea)
+function * addTodoFirestore (tarea) {
+  return yield db.collection('tareas').add(tarea)
 }
 
-function * handleTodoFirestore (action) {
+function * handleAddTodoFirestore (action) {
   try {
-    yield call(addTodoFirestore, action.payload)
-    yield put(actions.addTodoSuccess(action.payload))
+    const response = yield call(addTodoFirestore, action.payload)
+    const nuevaTarea = {...action.payload, key: response.id}
+    yield put(actions.addTodoSuccess(nuevaTarea))
   } catch (error) {
     if (error && error.response && error.response.data && error.response.data.mensaje) {
       yield put(actions.addAlert({
@@ -35,12 +36,72 @@ function * handleTodoFirestore (action) {
   }
 }
 
-function * watchTodoFirestore () {
-  yield takeEvery(actions.ADD_TODO, handleTodoFirestore)
+function * watchAddTodoFirestore () {
+  yield takeEvery(actions.ADD_TODO, handleAddTodoFirestore)
+}
+
+function * getAllTodoFirestore (tarea) {
+  return yield db.collection('tareas').add(tarea)
+}
+
+function * handleGetAllTodoFiretore (action) {
+  try {
+    const response = yield call(getAllTodoFirestore, action.payload)
+    const nuevaTarea = {...action.payload, key: response.id}
+    yield put(actions.addTodoSuccess(nuevaTarea))
+  } catch (error) {
+    if (error && error.response && error.response.data && error.response.data.mensaje) {
+      yield put(actions.addAlert({
+        text: error.response.data.mensaje,
+        type: 'error'
+      }))
+    } else {
+      console.log(error)
+      yield put(actions.addAlert({
+        text: 'Error al guardar la tarea',
+        type: 'error'
+      }))
+    }
+  }
+}
+
+function * watchGetAllTodoFiretore () {
+  yield takeEvery(actions.ADD_TODO, handleGetAllTodoFiretore)
+}
+
+function * toggleTodoFirestore (tarea) {
+  return yield db.collection('tareas').add(tarea)
+}
+
+function * handleToggleTodoFirestore (action) {
+  try {
+    const response = yield call(toggleTodoFirestore, action.payload)
+    const nuevaTarea = {...action.payload, key: response.id}
+    yield put(actions.addTodoSuccess(nuevaTarea))
+  } catch (error) {
+    if (error && error.response && error.response.data && error.response.data.mensaje) {
+      yield put(actions.addAlert({
+        text: error.response.data.mensaje,
+        type: 'error'
+      }))
+    } else {
+      console.log(error)
+      yield put(actions.addAlert({
+        text: 'Error al guardar la tarea',
+        type: 'error'
+      }))
+    }
+  }
+}
+
+function * watchToggleTodoFirestore () {
+  yield takeEvery(actions.ADD_TODO, handleToggleTodoFirestore)
 }
 
 export default function * saga () {
   yield all([
-    watchTodoFirestore(),
+    watchAddTodoFirestore(),
+    watchGetAllTodoFiretore(),
+    watchToggleTodoFirestore(),
   ])
 }
