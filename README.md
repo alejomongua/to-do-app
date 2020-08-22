@@ -53,4 +53,14 @@ Lo primero que intenté y no funcionó fue @fortawesome/fontawesome-free.
 
 Indagando un poco encuentro este otro paquete https://github.com/FortAwesome/react-fontawesome
 
+## redux-saga
 
+Para hacer persistente la lista de tareas, usaré redux saga para hacer peticiones asíncronas a firebase
+
+https://redux-saga.js.org/
+
+Modifico la acción addTodo para guardar el dato en firebase
+
+## Firebase
+
+Creo una base de datos en Firebase para guardar los datos de la aplicación, la interfaz se ve bastante sencilla
