@@ -40,15 +40,15 @@ function * watchAddTodoFirestore () {
   yield takeEvery(actions.ADD_TODO, handleAddTodoFirestore)
 }
 
-function * getAllTodoFirestore (tarea) {
-  return yield db.collection('tareas').add(tarea)
+function * getAllTodoFirestore () {
+  return yield db.collection('tareas').get()
 }
 
 function * handleGetAllTodoFiretore (action) {
   try {
     const response = yield call(getAllTodoFirestore, action.payload)
-    const nuevaTarea = {...action.payload, key: response.id}
-    yield put(actions.addTodoSuccess(nuevaTarea))
+    console.log(response)
+    yield put(actions.getListTodoSuccess(response))
   } catch (error) {
     if (error && error.response && error.response.data && error.response.data.mensaje) {
       yield put(actions.addAlert({
@@ -58,7 +58,7 @@ function * handleGetAllTodoFiretore (action) {
     } else {
       console.log(error)
       yield put(actions.addAlert({
-        text: 'Error al guardar la tarea',
+        text: 'Error al traer la lista de tareas',
         type: 'error'
       }))
     }
@@ -66,18 +66,18 @@ function * handleGetAllTodoFiretore (action) {
 }
 
 function * watchGetAllTodoFiretore () {
-  yield takeEvery(actions.ADD_TODO, handleGetAllTodoFiretore)
+  yield takeEvery(actions.GET_LIST_TODO, handleGetAllTodoFiretore)
 }
 
-function * toggleTodoFirestore (tarea) {
-  return yield db.collection('tareas').add(tarea)
+function * updateTodoFirestore (payload) {
+  return yield db.collection('tareas').doc(payload.id).set(payload.nuevosValores)
 }
 
-function * handleToggleTodoFirestore (action) {
+function * handleUpdateTodoFirestore (action) {
   try {
-    const response = yield call(toggleTodoFirestore, action.payload)
-    const nuevaTarea = {...action.payload, key: response.id}
-    yield put(actions.addTodoSuccess(nuevaTarea))
+    const response = yield call(updateTodoFirestore, action.payload)
+    console.log(response)
+    yield put(actions.updateTodoSuccess(action.payload))
   } catch (error) {
     if (error && error.response && error.response.data && error.response.data.mensaje) {
       yield put(actions.addAlert({
@@ -94,14 +94,14 @@ function * handleToggleTodoFirestore (action) {
   }
 }
 
-function * watchToggleTodoFirestore () {
-  yield takeEvery(actions.ADD_TODO, handleToggleTodoFirestore)
+function * watchUpdateTodoFirestore () {
+  yield takeEvery(actions.UPDATE_TODO, handleUpdateTodoFirestore)
 }
 
 export default function * saga () {
   yield all([
     watchAddTodoFirestore(),
     watchGetAllTodoFiretore(),
-    watchToggleTodoFirestore(),
+    watchUpdateTodoFirestore(),
   ])
 }

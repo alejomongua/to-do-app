@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Todo from './Todo'
 
-const TodoList = ({ todos, onTodoClick }) => {
+const TodoList = ({ todos, onTodoClick, onMount }) => {
+  useEffect(() => {
+    onMount()
+  }, []);
+
   return (
     <ul className='bg-blue-100 m-6'>
       {todos.map((todo) => (
@@ -28,7 +32,8 @@ TodoList.propTypes = {
       completed: PropTypes.bool,
     })
   ),
-  onTodoClick: PropTypes.func
+  onTodoClick: PropTypes.func,
+  onMount: PropTypes.func,
 }
 
 export default TodoList

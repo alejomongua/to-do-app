@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import { toggleTodo, VisibilityFilters } from '../redux/actions'
+import { updateTodo, VisibilityFilters, getListTodo } from '../redux/actions'
 import TodoList from './TodoList'
+import store from '../redux/store'
 
 function getVisibleTodos(todos, filter) {
   const todoList = todos.list.map(t => ({...todos.byId[t], key: t}))
@@ -21,8 +22,14 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onTodoClick(id) {
-    dispatch(toggleTodo(id))
+  onTodoClick (id) {
+    const state = store.getState()
+    const tarea = state.todos.byId[id]
+    tarea.completed = !tarea.completed
+    dispatch(updateTodo({ id, nuevosValores: tarea}))
+  },
+  onMount () {
+    dispatch(getListTodo())
   }
 })
 

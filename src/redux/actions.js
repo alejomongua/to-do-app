@@ -2,8 +2,10 @@ export const ADD_TODO = 'add_todo'
 export const ADD_TODO_SUCCESS = 'add_todo_success'
 export const REMOVE_TODO = 'delete_todo'
 export const REMOVE_TODO_SUCCESS = 'delete_todo_success'
-export const TOGGLE_TODO = 'toggle_todo'
-export const TOGGLE_TODO_SUCCESS = 'toggle_todo_success'
+export const UPDATE_TODO = 'update_todo'
+export const UPDATE_TODO_SUCCESS = 'update_todo_success'
+export const GET_LIST_TODO = 'get_list_todo'
+export const GET_LIST_TODO_SUCCESS = 'get_list_todo_success'
 
 export const SET_VISIBILITY_FILTER = 'set_visibility_filter'
 
@@ -34,16 +36,29 @@ export function addTodoSuccess(payload) {
   }
 }
 
-export function toggleTodo(payload) {
+export function updateTodo(payload) {
   return {
-    type: TOGGLE_TODO,
+    type: UPDATE_TODO,
     payload
   }
 }
 
-export function toggleTodoSuccess(payload) {
+export function updateTodoSuccess(payload) {
   return {
-    type: TOGGLE_TODO_SUCCESS,
+    type: UPDATE_TODO_SUCCESS,
+    payload
+  }
+}
+
+export function getListTodo(payload) {
+  return {
+    type: GET_LIST_TODO,
+  }
+}
+
+export function getListTodoSuccess(payload) {
+  return {
+    type: GET_LIST_TODO_SUCCESS,
     payload
   }
 }
