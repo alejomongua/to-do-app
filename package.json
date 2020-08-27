@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devServer": "webpack-dev-server --config webpack.config.js"
+    "devServer": "webpack-dev-server --config webpack.config.js --port 8090",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -32,5 +34,11 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.10.4",
+    "@testing-library/react": "^10.4.9",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2"
   }
 }
