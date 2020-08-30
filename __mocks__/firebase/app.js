@@ -1,25 +1,4 @@
-const tareas = [
-  {
-    text: 'Tarea 1',
-    completed: false,
-  },
-  {
-    text: 'Tarea 2',
-    completed: true,
-  },
-  {
-    text: 'Tarea 3',
-    completed: false,
-  },
-  {
-    text: 'Tarea 4',
-    completed: true,
-  },
-  {
-    text: 'Tarea 5',
-    completed: false,
-  },
-]
+const tareas = require('../../src/testHelpers/initialState')
 
 module.exports = {
   initializeApp: () => null,
