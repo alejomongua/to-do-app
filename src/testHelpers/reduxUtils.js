@@ -5,20 +5,26 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
 import reducer from '../redux/reducers'
-import initialState from '../testHelpers/initialState'
+import _initialState from './initialState'
 
 const create = renderer.create
 
 delete renderer.create
 
 renderer.create = function (
-  ui
+  ui,
+  {
+    initialState = _initialState
+  } = {}
 ) {
   return create(<Provider store={createStore(reducer, initialState)}>{ui}</Provider>)
 }
 
 function render(
-  ui
+  ui,
+  {
+    initialState = _initialState
+  } = {}
 ) {
   function Wrapper({ children }) {
     return <Provider store={createStore(reducer, initialState)}>{children}</Provider>
