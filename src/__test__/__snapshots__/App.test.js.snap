@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="container mx-auto bg-gray-200 py-8 px-4"
+>
+  <div>
+    <div />
+    <h1
+      className="font-semibold text-4xl"
+    >
+      Mi lista de tareas
+    </h1>
+    <div
+      className="mb-4"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="shadow appearance-none border rounded py-2 px-3 md:w-2/4 sm:w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline m-4"
+        />
+        <button
+          className="font-bold py-2 px-4 rounded text-gray-900 bg-gray-400 hover:bg-gray-600 md:w-1/4 sm:w-full focus:bg-gray-500"
+          type="submit"
+        >
+          <svg
+            aria-hidden="true"
+            className="svg-inline--fa fa-plus-circle fa-w-16 mx-2"
+            data-icon="plus-circle"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            style={Object {}}
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"
+              fill="currentColor"
+              style={Object {}}
+            />
+          </svg>
+          Agregar tarea
+        </button>
+      </form>
+    </div>
+    <ul
+      className="bg-blue-100 m-6"
+    >
+      <li
+        className="text-lg p-3 m-1 bg-green-300 hover:bg-green-200"
+        onClick={[Function]}
+      >
+        Tarea 1
+      </li>
+      <li
+        className="text-lg p-3 m-1 line-through bg-red-300 hover:bg-red-200"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 mx-2 text-green-400"
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+        Tarea 2
+      </li>
+      <li
+        className="text-lg p-3 m-1 bg-green-300 hover:bg-green-200"
+        onClick={[Function]}
+      >
+        Tarea 3
+      </li>
+      <li
+        className="text-lg p-3 m-1 line-through bg-red-300 hover:bg-red-200"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-check fa-w-16 mx-2 text-green-400"
+          data-icon="check"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+        Tarea 4
+      </li>
+      <li
+        className="text-lg p-3 m-1 bg-green-300 hover:bg-green-200"
+        onClick={[Function]}
+      >
+        Tarea 5
+      </li>
+    </ul>
+    <p>
+      Mostrar: 
+      <button
+        className="font-bold py-2 px-4 rounded text-white bg-blue-500 focus:bg-blue-600 hover:bg-blue-800"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      >
+        Todos
+      </button>
+      <button
+        className="font-bold py-2 px-4 rounded text-white bg-blue-500 focus:bg-blue-600 hover:bg-blue-800"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      >
+        Activos
+      </button>
+      <button
+        className="font-bold py-2 px-4 rounded text-white bg-blue-500 focus:bg-blue-600 hover:bg-blue-800"
+        disabled={false}
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": "5px",
+          }
+        }
+      >
+        Completados
+      </button>
+    </p>
+  </div>
+</div>
+`;
