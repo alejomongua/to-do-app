@@ -4,6 +4,9 @@ import Alertas from '../components/Alertas'
 import { render, renderer, screen } from '../testHelpers/reduxUtils'
 import _initialState from '../testHelpers/initialState'
 import '@testing-library/jest-dom'
+// Quitar estos imports cuando se pueda generar una alarma a través de la interfaz
+import { addAlert } from '../../src/redux/actions'
+import store from '../../src/redux/store'
 
 it("renders without crashing", () => {
   render(<Alertas />)
@@ -18,18 +21,20 @@ it('matches snapshot', () => {
 
 it('shows alerts', () => {
   const textoAlerta = 'Esto es un mensaje de alerta'
-  const initialState = { ..._initialState }
-  initialState.alertas = [{
+  const alerta = {
     type: 'error',
     text: textoAlerta
-  }]
+  }
 
-  render(<Alertas />, { initialState })
+  // To do: Hacer algo que genere una alerta, cambiar esta línea que sigue:
+  store.dispatch(addAlert(alerta))
+
+  render(<Alertas />)
 
   screen.debug()
 
   const tree = renderer
-    .create(<Alertas />, { initialState })
+    .create(<Alertas />)
     .toJSON();
   expect(tree).toMatchSnapshot()
 

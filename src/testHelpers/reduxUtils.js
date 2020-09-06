@@ -1,33 +1,26 @@
 // test-utils.js
 import React from 'react'
 import { render as rtlRender } from '@testing-library/react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import renderer from 'react-test-renderer'
-import reducer from '../redux/reducers'
 import _initialState from './initialState'
+import store from '../redux/store'
 
 const create = renderer.create
 
 delete renderer.create
 
 renderer.create = function (
-  ui,
-  {
-    initialState = _initialState
-  } = {}
+  ui
 ) {
-  return create(<Provider store={createStore(reducer, initialState)}>{ui}</Provider>)
+  return create(<Provider store={store}>{ui}</Provider>)
 }
 
 function render(
-  ui,
-  {
-    initialState = _initialState
-  } = {}
+  ui
 ) {
   function Wrapper({ children }) {
-    return <Provider store={createStore(reducer, initialState)}>{children}</Provider>
+    return <Provider store={store}>{children}</Provider>
   }
   return rtlRender(ui, { wrapper: Wrapper })
 }

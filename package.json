@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "devServer": "webpack-dev-server --config webpack.config.js --port 8090",
-    "test": "jest"
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --watch",
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
