@@ -112,6 +112,18 @@ exports[`matches snapshot 1`] = `
       >
         Tarea 5
       </li>
+      <li
+        className="text-lg p-3 m-1 bg-green-300 hover:bg-green-200"
+        onClick={[Function]}
+      >
+        Nueva tarea
+      </li>
+      <li
+        className="text-lg p-3 m-1 bg-green-300 hover:bg-green-200"
+        onClick={[Function]}
+      >
+        Nueva tarea
+      </li>
     </ul>
     <p>
       Mostrar: 

@@ -7,6 +7,9 @@ import '@testing-library/jest-dom'
 // Quitar estos imports cuando se pueda generar una alarma a través de la interfaz
 import { addAlert } from '../../src/redux/actions'
 import store from '../../src/redux/store'
+import TestRenderer from 'react-test-renderer'
+
+const { act } = TestRenderer
 
 it("renders without crashing", () => {
   render(<Alertas />)
@@ -27,11 +30,11 @@ it('shows alerts', () => {
   }
 
   // To do: Hacer algo que genere una alerta, cambiar esta línea que sigue:
-  store.dispatch(addAlert(alerta))
+  act(() => {
+    store.dispatch(addAlert(alerta))
+  })
 
   render(<Alertas />)
-
-  screen.debug()
 
   const tree = renderer
     .create(<Alertas />)

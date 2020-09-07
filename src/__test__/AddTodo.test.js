@@ -1,8 +1,7 @@
 import '@babel/polyfill'
 import React from 'react';
 import AddTodo from '../components/AddTodo'
-import { render, renderer, screen, fireEvent } from '../testHelpers/reduxUtils'
-import _initialState from '../testHelpers/initialState'
+import { render, renderer } from '../testHelpers/reduxUtils'
 import '@testing-library/jest-dom'
 
 it('matches snapshot', () => {
